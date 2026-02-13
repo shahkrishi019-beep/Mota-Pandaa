@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Love Game 💕</title>
+
+<style>
+body{
+  height:100vh;
+  margin:0;
+  background:pink;
+  font-family:Poppins,sans-serif;
+  text-align:center;
+  overflow:hidden;
+}
+h1{color:white;margin-top:20px;}
+p{color:white;font-size:1.2rem;}
+.heart{
+  position:absolute;
+  font-size:40px;
+  cursor:pointer;
+  user-select:none;
+}
+button{
+  padding:10px 22px;
+  border:none;
+  border-radius:20px;
+  background:#ff4d6d;
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Catch the Hearts 💖</h1>
+<p>Score: <span id="score">0</span> / 5</p>
+
+<button onclick="goProposal()">Skip Game → Proposal 💍</button>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name") || "My Love";
+
+let score = 0;
+const scoreSpan = document.getElementById("score");
+
+function spawnHeart(){
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+
+  h.style.left = Math.random() * (window.innerWidth - 50) + "px";
+  h.style.top  = Math.random() * (window.innerHeight - 80) + "px";
+
+  h.onclick = () => {
+    score++;
+    scoreSpan.innerText = score;
+    h.remove();
+
+    // AUTO REDIRECT AFTER WIN
+    if(score === 5){
+      setTimeout(goProposal, 500);
+    }
+  };
+
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(), 2000);
+}
+
+function goProposal(){
+  window.location.href = `proposal.html?name=${name}`;
+}
+
+setInterval(spawnHeart, 800);
+</script>
+
+</body>
+</html>

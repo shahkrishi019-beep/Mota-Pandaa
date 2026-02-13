@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Valentine ❤️</title>
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(#fbc2eb,#a6c1ee);
+  font-family:Poppins,sans-serif;
+  text-align:center;
+  color:white;
+  overflow:hidden;
+}
+h1{margin-top:25px;font-size:3rem;}
+button{
+  padding:12px 26px;
+  border:none;
+  border-radius:25px;
+  font-size:1rem;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  margin:8px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="loveText"></h1>
+
+<div style="font-size:2rem;">💑🥰🐻‍❣️🌸</div>
+
+<button onclick="goGame()">Play Love Game 💕</button>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name") || "My Love";
+
+document.getElementById("loveText").innerText =
+`Hehehe… I knew that, ${name} 😘❤️`;
+
+function goGame(){
+  window.location.href = `game.html?name=${name}`;
+}
+</script>
+
+</body>
+</html>
